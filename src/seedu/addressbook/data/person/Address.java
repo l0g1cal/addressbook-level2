@@ -11,7 +11,7 @@ public class Address {
     public static final String EXAMPLE = "a/123, Clementi Ave 3, #12-34, 231534";
     public static final String MESSAGE_ADDRESS_CONSTRAINTS = "Person addresses must be in the format "
     														+ "\"a/BLOCK, STREET, UNIT, POSTAL CODE\"";
-    public static final String ADDRESS_VALIDATION_REGEX = ".+";
+//    public static final String ADDRESS_VALIDATION_REGEX = ".+";
     
     private static final int ADDRESS_DETAIL_COUNT = 4;
     private static final int ADDRESS_DETAIL_BLOCK = 0;
@@ -44,6 +44,12 @@ public class Address {
         this.value = toString();
     }
     
+    /**
+     * Split address into its components, namely Block, Street, Unit, Postal Code
+     * 
+     * @param address
+     * @return string array of address components
+     */
     private static String[] splitAddress(String address) {
     	String[] addressDetails = address.split(",");
     	return addressDetails;

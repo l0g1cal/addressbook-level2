@@ -1,5 +1,11 @@
 package seedu.addressbook.data.person;
 
+/**
+ * Represents the block component of an address
+ * 
+ * @author JiaWern
+ *
+ */
 public class Block {
 	private final String block;
 	

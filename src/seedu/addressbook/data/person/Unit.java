@@ -1,5 +1,11 @@
 package seedu.addressbook.data.person;
 
+/**
+ * Represents the unit component of an address
+ * 
+ * @author JiaWern
+ *
+ */
 public class Unit {
 	private final String unit;
 	

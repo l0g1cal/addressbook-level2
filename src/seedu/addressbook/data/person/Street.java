@@ -1,5 +1,11 @@
 package seedu.addressbook.data.person;
 
+/**
+ * Represents the street component of an address
+ * 
+ * @author JiaWern
+ *
+ */
 public class Street {
 	private final String street;
 	
