@@ -9,6 +9,8 @@ import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.ui.TextUi;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -76,10 +78,18 @@ public class Main {
         System.exit(0);
     }
 
-    /** Reads the user command and executes it, until the user issues the exit command.  */
+    /** Reads the user command and executes it, until the user issues the exit command, or if
+     * storage file is deleted  */
     private void runCommandLoopUntilExitCommand() {
         Command command;
         do {
+        	try {
+        		storage.checkFileExist();
+        	}
+        	catch (FileNotFoundException fnfe) {
+        		ui.showToUser(fnfe.getMessage());
+        		exit();
+        	}
             String userCommandText = ui.getUserCommand();
             command = new Parser().parseCommand(userCommandText);
             CommandResult result = executeCommand(command);

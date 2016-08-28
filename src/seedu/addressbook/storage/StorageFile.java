@@ -46,6 +46,7 @@ public class StorageFile {
     private final JAXBContext jaxbContext;
 
     public final Path path;
+    public boolean isFileCreated = false;
 
     /**
      * @throws InvalidStorageFilePathException if the default path is invalid
@@ -68,6 +69,7 @@ public class StorageFile {
         if (!isValidPath(path)) {
             throw new InvalidStorageFilePathException("Storage file should end with '.txt'");
         }
+        isFileCreated = true;
     }
 
     /**
@@ -87,7 +89,7 @@ public class StorageFile {
 
         /* Note: Note the 'try with resource' statement below.
          * More info: https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
-         */
+         */    	
         try (final Writer fileWriter =
                      new BufferedWriter(new FileWriter(path.toFile()))) {
 
@@ -140,7 +142,19 @@ public class StorageFile {
             throw new StorageOperationException("File contains illegal data values; data type constraints not met");
         }
     }
-
+    
+    /**
+     * Checks if file still exists
+     * 
+     * @throws FileNotFoundException
+     */
+    public void checkFileExist() throws FileNotFoundException{
+    	File file = path.toFile();
+		if (!file.exists() && isFileCreated) {
+			throw new FileNotFoundException();
+		}
+    }
+    
     public String getPath() {
         return path.toString();
     }
