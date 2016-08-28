@@ -23,6 +23,7 @@ public class Address {
     private final Street street;
     private final Unit unit;
     private final PostalCode postalCode;
+    public final String value;
     private boolean isPrivate;
 
     /**
@@ -36,10 +37,11 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         String[] addressDetails = splitAddress(address);
-        this.block = new Block(addressDetails[ADDRESS_DETAIL_BLOCK]);
-        this.street = new Street(addressDetails[ADDRESS_DETAIL_STREET]);
-        this.unit = new Unit(addressDetails[ADDRESS_DETAIL_UNIT]);
-        this.postalCode = new PostalCode(addressDetails[ADDRESS_DETAIL_POSTAL_CODE]);
+        this.block = new Block(addressDetails[ADDRESS_DETAIL_BLOCK].trim());
+        this.street = new Street(addressDetails[ADDRESS_DETAIL_STREET].trim());
+        this.unit = new Unit(addressDetails[ADDRESS_DETAIL_UNIT].trim());
+        this.postalCode = new PostalCode(addressDetails[ADDRESS_DETAIL_POSTAL_CODE].trim());
+        this.value = toString();
     }
     
     private static String[] splitAddress(String address) {
@@ -53,17 +55,17 @@ public class Address {
     public static boolean isValidAddress(String test) {
     	String[] addressDetails = splitAddress(test);
     	if (addressDetails.length == ADDRESS_DETAIL_COUNT) {
-    		return addressDetails[ADDRESS_DETAIL_BLOCK] == null 
-    				&& addressDetails[ADDRESS_DETAIL_STREET] == null
-    				&& addressDetails[ADDRESS_DETAIL_UNIT] == null
-    				&& addressDetails[ADDRESS_DETAIL_POSTAL_CODE] == null;
+    		return addressDetails[ADDRESS_DETAIL_BLOCK] != null 
+    				&& addressDetails[ADDRESS_DETAIL_STREET] != null
+    				&& addressDetails[ADDRESS_DETAIL_UNIT] != null
+    				&& addressDetails[ADDRESS_DETAIL_POSTAL_CODE] != null;
     	}
     	return false;
     }
 
     @Override
     public String toString() {
-        return "a/" + block.getBlock() + ", " 
+        return block.getBlock() + ", " 
         			+ street.getStreet() + ", "
         			+ unit.getUnit() + ", "
         			+ postalCode.getPostalCode();
