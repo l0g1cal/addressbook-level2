@@ -35,4 +35,11 @@ public class IsSimilarTest {
 		Name other = new Name("Jw");
 		assertEquals(name.isSimilar(other), true);
 	}
+	
+	@Test
+	public void sameOtherNameDifferentOrder() throws IllegalValueException{
+		Name name = new Name("JW Yong");
+		Name other = new Name("Yong JW");
+		assertEquals(name.isSimilar(other), false);
+	}
 }
