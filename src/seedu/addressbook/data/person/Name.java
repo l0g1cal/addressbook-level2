@@ -61,14 +61,21 @@ public class Name {
         return fullName.hashCode();
     }
     
+    /**
+     * Similar is defined such that only the case of letters do not matter. Other things like order
+     * and subset/superset matter
+     * @param other
+     * @return
+     */
     public boolean isSimilar(Name other) {
     	if (other == null) {
     		return false;
     	}
     	
-    	if (this.toString().equals(other.toString())) {
+    	if (this.toString().toLowerCase().equals(other.toString().toLowerCase())) {
     		return true;
     	}
+    	
     	return false;
     }
 
