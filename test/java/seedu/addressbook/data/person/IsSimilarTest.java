@@ -28,4 +28,11 @@ public class IsSimilarTest {
 		Name other = new Name("JW");
 		assertEquals(name.isSimilar(other), true);
 	}
+	
+	@Test
+	public void sameOtherNameDifferentCase() throws IllegalValueException{
+		Name name = new Name("JW");
+		Name other = new Name("Jw");
+		assertEquals(name.isSimilar(other), true);
+	}
 }
