@@ -62,6 +62,13 @@ public class Name {
     }
     
     public boolean isSimilar(Name other) {
+    	if (other == null) {
+    		return false;
+    	}
+    	
+    	if (this.toString().equals(other.toString())) {
+    		return true;
+    	}
     	return false;
     }
 
