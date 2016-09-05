@@ -49,4 +49,11 @@ public class IsSimilarTest {
 		Name other = new Name("JW");
 		assertEquals(name.isSimilar(other), false);
 	}
+	
+	@Test
+	public void otherNameIsSuperset() throws IllegalValueException{
+		Name name = new Name("JW");
+		Name other = new Name("JW Yong");
+		assertEquals(name.isSimilar(other), false);
+	}
 }
