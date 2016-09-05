@@ -42,4 +42,11 @@ public class IsSimilarTest {
 		Name other = new Name("Yong JW");
 		assertEquals(name.isSimilar(other), false);
 	}
+	
+	@Test
+	public void otherNameIsSubset() throws IllegalValueException{
+		Name name = new Name("JW Yong");
+		Name other = new Name("JW");
+		assertEquals(name.isSimilar(other), false);
+	}
 }
